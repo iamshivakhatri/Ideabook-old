@@ -10,6 +10,9 @@ app.get('/api/v1/login', (req, res) => {
 })
 */
 
+//Middleware
+app.use(express.json());
+
 //Available routes
 
 app.use('/api/auth', require('./routes/auth'))
