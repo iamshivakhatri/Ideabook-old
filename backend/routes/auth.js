@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 let fetchuser = require('../middleware/fetchuser');
 
-
+ 
 
 //ROUTE 1: create a User using: POST "/api/auth/createuser" it doesn't require login
 router.post(
@@ -23,6 +23,9 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+
+    
     //check whether user with same email exist already
 
     try {
