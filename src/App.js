@@ -1,13 +1,27 @@
-
-import './App.css';
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import About from "./Components/About";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <h1> This is Ideabook</h1>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar/>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+              </>
+            }
+          />
+          <Route path="/About" element={<About />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
