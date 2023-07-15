@@ -97,4 +97,39 @@ async(req, res) =>{
 );
 
 
+
+//Route3 : Deleting the note
+
+router.delete("/deletenote/:id",fetchuser,
+async(req, res) =>{
+    try {
+        const{title, description, tag} = req.body;
+       
+        // Find the note to be  deleted and deleted it
+
+        let note = await Note.findById(req.params.id);
+        if(!note){ return res.status(404).send("Not Found")};
+
+        //Allow deletion only if user owns this note
+        if(note.user.toString() !== req.user.id){
+            return res.status(401).send("Not Allowed");
+        }
+
+        note = await Note.findByIdAndDelete(req.params.id);
+        res.json({"success": "The id has been deleted"});
+
+           
+            
+  
+        
+    } catch (error) {
+        console.log(error.message);
+      res.status(500).send("Internal server occured");
+        
+    }
+
+}
+);
+
+
 module.exports = router;
